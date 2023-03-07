@@ -15,4 +15,4 @@ module.exports = {
   },
 };
 // whitelist address 0x3c3A3FB2b03ac6bd81D4f782381a79362838EC3a
-// cryptodevs address 0x93AF5c043682Eabdb2eF687F5b702cdB9423Edc9
+// cryptodevs address 0xb7BFa5451B73eFEDD617F05F6bA617695f64013b
