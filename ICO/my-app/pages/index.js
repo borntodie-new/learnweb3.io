@@ -267,7 +267,44 @@ const Home = () => {
   }, [walletConnected]);
 
   const renderButton = () => {
-    return <></>;
+    if (loading) {
+      return (
+        <div>
+          <button className={styles.button}>Loading...</button>
+        </div>
+      );
+    }
+    if (tokenToBeClaimed > 0) {
+      return (
+        <div>
+          <div className={styles.description}>
+            {tokenToBeClaimed * 10} Tokens can be claimed!
+          </div>
+          <button className={styles.button} onClick={claimCryptoDevTokens}>
+            Claim Tokens
+          </button>
+        </div>
+      );
+    }
+    return (
+      <div style={{ display: "flex-col" }}>
+        <div>
+          <input
+            type="number"
+            placeholder="Amount of Tokens"
+            className={styles.input}
+            onChange={(e) => setTokenAmount(BigNumber.from(e.target.value))}
+          />
+        </div>
+        <button
+          onClick={() => mintCryptoDevToken(tokenAmount)}
+          className={styles.button}
+          disabled={!(tokenAmount > 0)}
+        >
+          Mint Tokens
+        </button>
+      </div>
+    );
   };
   return (
     <div>
@@ -329,9 +366,3 @@ const Home = () => {
 };
 
 export default Home;
-
-/*
-getTokensToBeClaimed
-
-
-*/
