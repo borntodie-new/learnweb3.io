@@ -32,7 +32,7 @@ module.exports = {
 */
 module.exports = {
   solidity: "0.8.7",
-  netwoeks: {
+  networks: {
     goerli: {
       url: ALCHEMY_API_KEY_URL,
       accounts: [WALLET_PRIVATE_KEY],
@@ -40,3 +40,5 @@ module.exports = {
     },
   },
 };
+// FakeNFTMarketplace address is 0x28d56ea67da7eBB2EA47b31e7F4Ce6a53D72f320
+// cryptoDevsDAO address is 0x1467A99a94b4f302F3047008A9699b3c416ad483
