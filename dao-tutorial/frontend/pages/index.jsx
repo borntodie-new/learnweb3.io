@@ -301,11 +301,9 @@ export default function Home() {
     return cryptoDevsNFTContract;
   };
 
-  // piece of code that runs everytime the value of `walletConnected` changes
-  // so when a wallet connects or disconnects
-  // Prompts user to connect wallet if not connected
-  // and then calls helper functions to fetch the
-  // DAO Treasury Balance, User NFT Balance, and Number of Proposals in the DAO
+  /**
+   * 钱包连接变动监听
+  */
   useEffect(() => {
     if (!walletConnected) {
       web3ModalRef.current = new Web3Modal({
@@ -322,9 +320,9 @@ export default function Home() {
     }
   }, [walletConnected]);
 
-  // Piece of code that runs everytime the value of `selectedTab` changes
-  // Used to re-fetch all proposals in the DAO when user switches
-  // to the 'View Proposals' tab
+  /**
+   * 选项框变动监听
+  */
   useEffect(() => {
     if (selectedTab === "View Proposals") {
       fetchAllProposals();
