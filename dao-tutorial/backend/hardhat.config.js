@@ -1,5 +1,8 @@
 require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
+require("dotenv").config({ path: ".env" });
+
+const ALCHEMY_API_KEY_URL = process.env.ALCHEMY_API_KEY_URL;
+const WALLET_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY;
 
 //* Default Template for Reference
 /*
@@ -28,5 +31,12 @@ module.exports = {
   etherscan - Object to fill in EtherScan Information for contract verification
 */
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.7",
+  netwoeks: {
+    goerli: {
+      url: ALCHEMY_API_KEY_URL,
+      accounts: [WALLET_PRIVATE_KEY],
+      chainId: 5,
+    },
+  },
 };
