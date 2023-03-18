@@ -34,10 +34,10 @@ interface ICryptoDevsNFT {
     /// @param owner - address to fetch the NFT TokenID for
     /// @param index - index of NFT in owned tokens array to fetch
     /// @return Returns the TokenID of the NFT
-    function tokenOfOwnerByIndex(
-        address owner,
-        uint256 index
-    ) external view returns (uint256);
+    function tokenOfOwnerByIndex(address owner, uint256 index)
+        external
+        view
+        returns (uint256);
 }
 
 contract CryptoDevsDAO is Ownable {
@@ -114,9 +114,11 @@ contract CryptoDevsDAO is Ownable {
     /// @dev createProposal allows a CryptoDevsNFT holder to create a new proposal in the DAO
     /// @param _nftTokenId - the tokenID of the NFT to be purchase from FakeNFTMarketplace if this proposal passes
     /// @return Returns the proposal index for the newly created propoasl.
-    function createProposal(
-        uint256 _nftTokenId
-    ) external nftHolderOnly returns (uint256) {
+    function createProposal(uint256 _nftTokenId)
+        external
+        nftHolderOnly
+        returns (uint256)
+    {
         require(nftMarketplace.available(_nftTokenId), "NFT_NOT_FOR_SALE");
         Proposal storage proposal = proposals[_nftTokenId];
         proposal.nftTokenId = _nftTokenId;
@@ -129,10 +131,11 @@ contract CryptoDevsDAO is Ownable {
     /// @dev voteOnProposal allows a CryptoDevsNFT holder to cast their vote on an active proposal
     /// @param proposalIndex - the index of the proposal to vote on in the proposal array
     /// @param vote - the type of vote they want to casr
-    function voteOnProposal(
-        uint256 proposalIndex,
-        Vote vote
-    ) external nftHolderOnly activeProposalOnly(proposalIndex) {
+    function voteOnProposal(uint256 proposalIndex, Vote vote)
+        external
+        nftHolderOnly
+        activeProposalOnly(proposalIndex)
+    {
         Proposal storage proposal = proposals[proposalIndex];
 
         uint256 voteNFTBalance = cryptoDevsNFT.balanceOf(msg.sender);
@@ -156,9 +159,11 @@ contract CryptoDevsDAO is Ownable {
 
     /// @dev executeProposal allows any CryptoDevsNFT holder to execute a proposal after it's deadline has been exceeded
     /// @param proposalIndex - the index of the proposal to execute in the proposal array
-    function executeProposal(
-        uint256 proposalIndex
-    ) external nftHolderOnly inactiveProposalOnly(proposalIndex) {
+    function executeProposal(uint256 proposalIndex)
+        external
+        nftHolderOnly
+        inactiveProposalOnly(proposalIndex)
+    {
         Proposal storage proposal = proposals[proposalIndex];
         if (proposal.yayVotes > proposal.nayVotes) {
             uint256 nftPrice = nftMarketplace.getPrice();
