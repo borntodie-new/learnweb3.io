@@ -12,6 +12,7 @@ module.exports = {
     goerli: {
       url: QUICKNODE_HTTP_URL,
       accounts: [PRIVATE_KEY],
+      chainId: 5,
     },
   },
 };
