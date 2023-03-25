@@ -47,10 +47,10 @@ export const getTokenAfterRemove = async (
     const _totalSupply = await ExchangeContract.totalSupply();
 
     // 2. 计算如果移除removerLPTokenWei比例的流动性，需要移除多少ETH
-    const _removeEther = _ethBalance.mul(removeLiquidity.div(_totalSupply));
+    const _removeEther = _ethBalance.mul(removerLPTokenWei.div(_totalSupply));
     // 3. 计算如果移除removerLPTokenWei比例的流动性，需要移除多少CDToken
     const _removeCDToken = cryptoDevTokenReserve.mul(
-      removeLiquidity.div(_totalSupply)
+      removerLPTokenWei.div(_totalSupply)
     );
     return {
       _removeEther,
